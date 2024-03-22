@@ -6,10 +6,19 @@
     <title>Purchase & Track Impact | Seabin</title>
 
     <!-- Custom CSS File link -->
-    <!-- <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="media.css" /> -->
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- <link rel="stylesheet" href="media.css" /> -->
 
-    <!-- General CSS  -->
+    <!-- Font File link -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Custom CSS  -->
     <style>
       /* --- */
       @import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Maven+Pro:wght@400..900&display=swap");
@@ -714,65 +723,95 @@
       .purchasing-plan-section img {
         width: 100%;
       }
+      section:has(.purchasing-plan-container) {
+        background: #e5e5e5;
+      }
       .purchasing-plan-container {
         display: flex;
-        justify-content: space-evenly;
-        align-items: stretch;
-        margin: 40px 0 100px;
+        margin-top: -5px;
+        padding: 75px 0;
       }
-      .purchasing-plan {
+      .purchasing-twice-container {
+        display: flex;
+        /* background: green; */
+        width: 50%;
+        justify-content: center;
+        padding: 40px 25px;
+        align-items: center;
+      }
+      .purchasing-twice-container > h1 {
+        margin: 0 30px;
+        font-family: var(--maven);
+        font-size: 20px;
+        font-weight: 400;
+      }
+      .purchasing-twice-container:first-child {
+        border-right: 1px solid #636363;
+      }
+      .purchase-plan {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        width: 22%;
+        gap: 25px;
+        width: 200px;
       }
-      .purchasing-plan .details {
-        border: 2px solid black;
+      .purchase-plan .card {
         background: white;
         border-radius: 10px;
-        box-shadow: 2px 2px 5px 1px #b9b9b9;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        padding: 10px 0px 20px;
-        font-family: var(--arial);
+        overflow: hidden;
+        box-shadow: 1px 1px 4px 0px #9b9b9b;
       }
-      .purchasing-plan .details > h1 {
-        font-size: 22px;
-      }
-      .purchasing-plan .details > h2 {
-        font-size: 18px;
-        margin: 10px 0;
-      }
-      .purchasing-plan .details > h3 {
-        font-size: 16px;
-        font-weight: 500;
-      }
-      .purchasing-plan .details.empty {
-        height: 100%;
+      .purchase-plan .card > .header {
+        background: #d5d4d3;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
-        padding: 0 40px;
-        text-align: center;
-        font-weight: 600;
-      }
-      .purchasing-plan > button {
-        border-radius: 8px;
-        color: white;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 500;
-        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+        padding: 20px 0 10px;
+        color: black;
         font-family: var(--arial);
-        border: none;
-        padding: 10px 0;
-        outline: none;
-        background: var(--blue);
       }
-      .purchasing-plan:nth-child(2) > button {
+      .purchase-plan.bright .card > .header {
         background: var(--green);
+        color: white;
+      }
+      .purchase-plan .card > .header h2 {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .purchase-plan .card > .header p {
+        font-size: 13px;
+      }
+      .purchase-plan .card > .body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 5px 30px;
+        font-family: var(--arial);
+      }
+      .purchase-plan .card > .body h3 {
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0 0 15px 0;
+      }
+      .purchase-plan .card > .body p {
+        font-size: 12px;
+        margin: 2px 0 00 0;
+        font-weight: 400;
+      }
+      .purchase-plan > .btn {
+        width: 100%;
+        background: #d5d4d3;
+        text-align: center;
+        font-family: var(--arial);
+        padding: 8px 0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: black;
+      }
+      .purchase-plan.bright > .btn {
+        background: var(--green);
+        color: white;
       }
       /* --- */
       .plan-guide-section > .title {
@@ -860,7 +899,7 @@
       }
     </style>
 
-    <!-- Media Query -->
+    <!-- Media Queries -->
     <style>
       @media screen and (max-width: 1700px) {
         .business-ad-img > h1 {
@@ -912,8 +951,8 @@
         .business-ad-container > h1 {
           font-size: 30px;
         }
-        .purchasing-plan {
-          width: 28%;
+        .purchasing-twice-container > h1 {
+          margin: 0 20px;
         }
       }
       @media screen and (max-width: 1050px) {
@@ -1028,6 +1067,18 @@
           font-size: 100px;
           right: -29%;
         }
+        .purchasing-plan-container {
+          flex-direction: column;
+          align-items: center;
+          padding: 50px 0;
+        }
+        .purchasing-twice-container {
+          width: 500px;
+        }
+        .purchasing-twice-container:first-child {
+          border-right: none;
+          border-bottom: 1px solid grey;
+        }
       }
       @media screen and (max-width: 900px) {
         .purchase-container {
@@ -1093,12 +1144,7 @@
           font-size: 40px;
           max-width: 335px;
         }
-        .purchasing-plan .details > h3 {
-          font-size: 14px;
-        }
-        .purchasing-plan .details > h2 {
-          font-size: 17px;
-        }
+
         .plan-guide-section > .title h1 {
           font-size: 34px;
         }
@@ -1122,6 +1168,9 @@
         }
         .plan-guide-step::after {
           right: -85px;
+        }
+        .purchasing-plan-container {
+          padding: 40px 0;
         }
       }
       @media screen and (max-width: 800px) {
@@ -1186,6 +1235,9 @@
         }
         .impact-container {
           width: 90%;
+        }
+        .purchasing-plan-container {
+          padding: 30px 0;
         }
       }
       @media screen and (max-width: 700px) {
@@ -1271,18 +1323,7 @@
           top: 150px;
           right: -50px;
         }
-        .purchasing-plan-container {
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 50px;
-          padding: 0 40px;
-        }
-        .purchasing-plan {
-          width: 240px;
-        }
-        .purchasing-plan .details.empty {
-          padding: 50px 40px;
-        }
+
         .clients-container {
           margin: 0 auto 60px;
         }
@@ -1298,6 +1339,9 @@
         }
         .impact-last-section h1 {
           font-size: 30px;
+        }
+        .purchasing-plan-container {
+          padding: 20px 0;
         }
       }
       @media screen and (max-width: 600px) {
@@ -1406,6 +1450,15 @@
         .plan-guide-step::after {
           right: unset;
           top: -130px;
+        }
+      }
+      @media screen and (max-width: 550px) {
+        .purchasing-twice-container {
+          width: max-content;
+          flex-direction: column;
+        }
+        .purchasing-twice-container > h1 {
+          margin: 20px;
         }
       }
       @media screen and (max-width: 500px) {
@@ -1607,12 +1660,7 @@
         .clients-container .swiper-button-next {
           right: -40px;
         }
-        .purchasing-plan-container {
-          padding: 0 30px;
-        }
-        .purchasing-plan {
-          width: 100%;
-        }
+
         .plan-guide-section > .title h1 {
           font-size: 26px;
         }
@@ -1629,15 +1677,6 @@
         }
       }
     </style>
-
-    <!-- Font File link -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      rel="stylesheet" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
     <!-- ########################## -->
@@ -2164,45 +2203,77 @@
       <img src="media/images/mobile-img.png" alt="#" />
       <div class="container">
         <div class="purchasing-plan-container">
-          <!-- item -->
-          <div class="purchasing-plan">
-            <div class="details">
-              <h1>$250 Per Month</h1>
-              <h2>
-                ($3000 Year) <br />
-                3000 Microcredits
-              </h2>
-              <h3>
-                11.2 Million Litres Water Filtered <br />
-                6000 Plastic Items Captured <br />
-                1,620 Microplastics Captured
-              </h3>
+          <!-- Twice Plan Cards -->
+          <div class="purchasing-twice-container">
+            <!-- Plan Item -->
+            <div class="purchase-plan">
+              <div class="card">
+                <div class="header">
+                  <h2>$250 Per Month</h2>
+                  <p>($3000 Per Year)</p>
+                </div>
+                <div class="body">
+                  <h3>Your Impact</h3>
+                  <p>11.2 Million Litres Water Filtered</p>
+                  <p>6,000 Plastic Items Captured</p>
+                  <p>3,240 Microplastics Captured</p>
+                </div>
+              </div>
+              <a href="#" class="btn">Purchase Plan</a>
             </div>
-            <button>Purchase Plan</button>
+            <h1>OR</h1>
+            <!-- Plan Item -->
+            <div class="purchase-plan bright">
+              <div class="card">
+                <div class="header">
+                  <h2>$2,750 Per Year</h2>
+                  <p>($250 Discount)</p>
+                </div>
+                <div class="body">
+                  <h3>Your Impact</h3>
+                  <p>11.2 Million Litres Water Filtered</p>
+                  <p>6,000 Plastic Items Captured</p>
+                  <p>3,240 Microplastics Captured</p>
+                </div>
+              </div>
+              <a href="#" class="btn">Purchase Plan</a>
+            </div>
           </div>
-          <!-- item -->
-          <div class="purchasing-plan">
-            <div class="details">
-              <h1>$500 Per Month</h1>
-              <h2>
-                ($6000 Year)
-                <br />
-                6000 Microcredits
-              </h2>
-              <h3>
-                22.4 Million Litres Water Filtered <br />
-                12,000 Plastic Items Captured<br />
-                6,480 Microplastics Captured
-              </h3>
+          <!-- Twice Plan Cards -->
+          <div class="purchasing-twice-container">
+            <!-- Plan Item -->
+            <div class="purchase-plan">
+              <div class="card">
+                <div class="header">
+                  <h2>$500 Per Month</h2>
+                  <p>($6000 Per Year)</p>
+                </div>
+                <div class="body">
+                  <h3>Your Impact</h3>
+                  <p>22.4 Million Litres Water Filtered</p>
+                  <p>12,000 Plastic Items Captured</p>
+                  <p>6,840 Microplastics Captured</p>
+                </div>
+              </div>
+              <a href="#" class="btn">Purchase Plan</a>
             </div>
-            <button>Purchase Plan</button>
-          </div>
-          <!-- item -->
-          <div class="purchasing-plan">
-            <div class="details empty">
-              <p> Choose your budget and your impact</p>
+            <h1>OR</h1>
+            <!-- Plan Item -->
+            <div class="purchase-plan bright">
+              <div class="card">
+                <div class="header">
+                  <h2>$5,500 Per Month</h2>
+                  <p>($500 Discount)</p>
+                </div>
+                <div class="body">
+                  <h3>Your Impact</h3>
+                  <p>22.4 Million Litres Water Filtered</p>
+                  <p>12,000 Plastic Items Captured</p>
+                  <p>6,840 Microplastics Captured</p>
+                </div>
+              </div>
+              <a href="#" class="btn">Purchase Plan</a>
             </div>
-            <button>Purchase Plan</button>
           </div>
         </div>
       </div>
@@ -2235,44 +2306,77 @@
       <img src="media/images/student-img.png" alt="#" />
       <div class="container">
         <div class="purchasing-plan-container">
-          <!-- item -->
-          <div class="purchasing-plan">
-            <div class="details">
-              <h1>$20 Per Month</h1>
-              <h2>
-                ($240 Year)<br />
-                240 Microcredits
-              </h2>
-              <h3>
-                149,494 Litres Water Filtered <br />
-                480 Plastic Items Captured <br />
-                254 Microplastics Captured
-              </h3>
+          <!-- Twice Plan Cards -->
+          <div class="purchasing-twice-container">
+            <!-- Plan Item -->
+            <div class="purchase-plan">
+              <div class="card">
+                <div class="header">
+                  <h2>$22.50 Per Month</h2>
+                  <p>($270 Per Year)</p>
+                </div>
+                <div class="body">
+                  <h3>Your Impact</h3>
+                  <p>1 Million Litres Water Filtered</p>
+                  <p>540 Plastic Items Captured</p>
+                  <p>291 Microplastics Captured</p>
+                </div>
+              </div>
+              <a href="#" class="btn">Purchase Plan</a>
             </div>
-            <button>Purchase Plan</button>
+            <h1>OR</h1>
+            <!-- Plan Item -->
+            <div class="purchase-plan bright">
+              <div class="card">
+                <div class="header">
+                  <h2>$247.50 Per Year</h2>
+                  <p>($22.50 Discount)</p>
+                </div>
+                <div class="body">
+                  <h3>Your Impact</h3>
+                  <p>1 Million Litres Water Filtered</p>
+                  <p>540 Plastic Items Captured</p>
+                  <p>291 Microplastics Captured</p>
+                </div>
+              </div>
+              <a href="#" class="btn">Purchase Plan</a>
+            </div>
           </div>
-          <!-- item -->
-          <div class="purchasing-plan">
-            <div class="details">
-              <h1>$40 Per Month</h1>
-              <h2>
-                ($480 Year) <br />
-                480 Microcredits
-              </h2>
-              <h3>
-                298,989 Litres Water Filtered <br />
-                960 Plastic Items Captured<br />
-                508 Microplastics Captured
-              </h3>
+          <!-- Twice Plan Cards -->
+          <div class="purchasing-twice-container">
+            <!-- Plan Item -->
+            <div class="purchase-plan">
+              <div class="card">
+                <div class="header">
+                  <h2>$45.83 Per Month</h2>
+                  <p>($550 Per Year)</p>
+                </div>
+                <div class="body">
+                  <h3>Your Impact</h3>
+                  <p>2 Million Litres Water Filtered</p>
+                  <p>1,100 Plastic Items Captured</p>
+                  <p>594 Microplastics Captured</p>
+                </div>
+              </div>
+              <a href="#" class="btn">Purchase Plan</a>
             </div>
-            <button>Purchase Plan</button>
-          </div>
-          <!-- item -->
-          <div class="purchasing-plan">
-            <div class="details empty">
-              <p> Choose your budget and your impact</p>
+            <h1>OR</h1>
+            <!-- Plan Item -->
+            <div class="purchase-plan bright">
+              <div class="card">
+                <div class="header">
+                  <h2>$504.17 Per Year</h2>
+                  <p>($45.83 Discount)</p>
+                </div>
+                <div class="body">
+                  <h3>Your Impact</h3>
+                  <p>2 Million Litres Water Filtered</p>
+                  <p>1,100 Plastic Items Captured</p>
+                  <p>594 Microplastics Captured</p>
+                </div>
+              </div>
+              <a href="#" class="btn">Purchase Plan</a>
             </div>
-            <button>Purchase Plan</button>
           </div>
         </div>
       </div>
