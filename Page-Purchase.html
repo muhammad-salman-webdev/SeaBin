@@ -1,0 +1,2708 @@
+<?php
+/**
+ * Template Name: Purchase and track impact Page
+ * The template for displaying the faqs page
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package Here_Agency_Template
+ */
+
+get_header();
+?>
+<!-- Custom CSS  -->
+<style>
+  /* --- */
+  @import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Maven+Pro:wght@400..900&display=swap");
+  /* --- */
+
+  /* Universal Seletor */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+  }
+
+  :root {
+    /* Font Families */
+    --arial: system-ui;
+    --maven: "Maven Pro", sans-serif;
+    /* Colors */
+    --green: #7bca67;
+    --blue: #18b9e7;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  /* Global Classes */
+  .container {
+    width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Regular Class */
+
+  .headline-container > h1,
+  .headline-container > h2 {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 50px;
+  }
+
+  .headline-container > h1 {
+    font-family: var(--arial);
+    font-weight: 700;
+    background: #f4faa3;
+    font-size: 38px;
+  }
+
+  .headline-container > h2 {
+    background: #f4df77;
+    font-family: var(--maven);
+    font-weight: 500;
+    line-height: 26px;
+    font-size: 26px;
+  }
+
+  /* ------ */
+  .hero-video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 60px;
+  }
+  .hero-video {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .hero-video > video {
+    width: 100%;
+  }
+  .hero-video .play-pause-btn {
+    position: absolute;
+    background: #ffffff;
+    color: #484848;
+    width: 150px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 66px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.4;
+  }
+  .hero-video .play-pause-btn:hover {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+
+  .hero-video-container .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    row-gap: 60px;
+  }
+  .hero-video-container h1 {
+    font-size: 36px;
+    font-family: var(--arial);
+  }
+  .hero-video-container h1 i {
+    font-size: 20px;
+    position: relative;
+    top: -10px;
+  }
+
+  .btn-primary {
+    font-family: var(--arial);
+    font-weight: 700;
+    color: white;
+    padding: 10px 70px;
+    cursor: pointer;
+    background: var(--green);
+    font-size: 28px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 4px 4px 9px 0px #00000061;
+  }
+  /* ---- */
+  .purchase-section {
+    margin: 125px 0 100px;
+  }
+  .purchase-container {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    padding: 0 60px;
+  }
+  .purchase-container > .purchase-types,
+  .purchase2-container > .purchase-types {
+    display: flex;
+    gap: 60px;
+  }
+  .purchase-product {
+    border-radius: 20px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 4px 7px 0px #00000047;
+  }
+  .purchase-product > .product-img {
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-img > img {
+    width: 100%;
+    border-radius: 20px;
+    height: 100%;
+  }
+  .product-img > span {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.702);
+    box-sizing: 10px 10px black;
+    font-family: var(--arial);
+    font-weight: 500;
+    padding: 8px 40px;
+    border-radius: 8px;
+  }
+  .purchase-product > .product-info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .product-info button {
+    background: var(--blue);
+    border-radius: 10px;
+    border: none;
+    padding: 12px 0;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin-top: 20px;
+  }
+  .product-info button.btn-green {
+    background: var(--green);
+  }
+  .product-info > p {
+    font-family: var(--arial);
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    color: #484848;
+  }
+  .purchase-container > h1,
+  .purchase2-container > h1,
+  .purchase-container > h2 {
+    font-weight: 700;
+    font-family: var(--arial);
+    font-size: 32px;
+    padding: 0 50px;
+    text-align: center;
+  }
+  .purchase-container > h2 {
+    font-size: 24px;
+    width: 686px;
+    margin: 0 auto;
+  }
+  /* ---- */
+  .plan-img-text {
+    display: grid;
+    grid-template-areas: "img text1" "img text2" "img text3" "text4 text4";
+    padding: 50px 60px;
+    align-items: start;
+    justify-content: start;
+  }
+  .plan-img-text > .plan-img {
+    grid-area: img;
+    position: relative;
+    width: 300px;
+  }
+  .plan-img-text img {
+    border-radius: 0 0 12px 12px;
+    box-shadow: 3px 3px 2px 0px #0000003d;
+    width: 100%;
+  }
+  .plan-img::before {
+    content: "";
+    z-index: 100;
+    width: 12px;
+    height: 21px;
+    right: -12px;
+    background: #ffffff;
+    position: absolute;
+  }
+  .plan-img-text > p:nth-child(2) {
+    grid-area: text1;
+  }
+  .plan-img-text > p:nth-child(3) {
+    grid-area: text2;
+  }
+  .plan-img-text > p:nth-child(4) {
+    grid-area: text3;
+  }
+  .plan-img-text > p:nth-child(5) {
+    grid-area: text4;
+    padding: 0;
+    margin-top: 30px;
+  }
+  .plan-img-text > p {
+    font-family: var(--arial);
+    font-weight: 500;
+    font-size: 22px;
+    color: #484848;
+    padding: 10px 0px;
+    padding-left: 50px;
+  }
+  .plan-steps-container {
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+    margin-bottom: 100px;
+  }
+  .plan-steps-container > h1 {
+    font-size: 60px;
+    font-family: var(--arial);
+  }
+  .plan-steps {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+  }
+  .plan-steps > .plan-step {
+    width: 24%;
+    position: relative;
+  }
+  .plan-step > h3 {
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1.5/1;
+    font-family: var(--arial);
+    font-weight: 800;
+    padding: 0 20px;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 10px;
+    border: 1px solid black;
+    position: relative;
+    box-shadow: 3px 3px 4px 0px #00000033;
+  }
+  .plan-step > h3::before {
+    width: 1px;
+    bottom: -70px;
+    height: 70px;
+    content: "";
+    background: black;
+    position: absolute;
+  }
+  .plan-step > p {
+    margin-top: 80px;
+    font-family: var(--arial);
+    text-align: center;
+    font-weight: 500;
+  }
+  .plan-step:not(:last-child)::before {
+    content: "+";
+    position: absolute;
+    font-size: 100px;
+    font-weight: 900;
+    font-family: var(--arial);
+    right: -75px;
+    top: -10px;
+  }
+  .plan-steps-container button.btn-primary {
+    background: #20ab9e;
+  }
+  /* --- */
+  .benefit-qa h1 {
+    font-size: 60px;
+    font-family: var(--arial);
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+  }
+  .benefit-qa h1.a {
+    background: #7accda;
+    color: white;
+  }
+  .purchase2-container {
+    display: flex;
+    gap: 60px;
+    flex-direction: column;
+    padding: 0 60px;
+    margin: 60px 0;
+  }
+  .purchase-types {
+    display: flex;
+    gap: 60px;
+  }
+  .purchase-type {
+    width: auto;
+    box-shadow: 0px 0px 2px 0px #a7a7a7;
+    border-radius: 15px;
+    position: relative;
+  }
+  .purchase-image {
+    width: 100%;
+  }
+  .purchase-image > img {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+  }
+  .purchase-image > span {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: white;
+    font-family: var(--arial);
+    font-weight: 600;
+  }
+  .purchase-type > h1.option {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    text-align: center;
+    font-family: var(--arial);
+    padding: 0px;
+    font-size: 28px;
+  }
+  .purchase-details {
+    display: flex;
+    padding: 5px 20px 20px;
+  }
+  .purchase-details .purchase-info {
+    min-width: 210px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .purchase-info > h3 {
+    font-size: 40px;
+    font-family: var(--maven);
+    font-weight: 600;
+    display: flex;
+    align-items: start;
+    gap: 3px;
+  }
+  .purchase-info > h3 span {
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .purchase-info > span {
+    font-size: 10px;
+    font-family: var(--maven);
+    font-weight: 600;
+  }
+  .purchase-info > h2 {
+    font-family: var(--maven);
+    font-size: 38px;
+    color: #3568b0;
+    margin: 2.5px 0;
+    font-weight: 600;
+  }
+  .purchase-info > p {
+    font-size: 12px;
+    font-family: var(--maven);
+  }
+  .purchase-info > .checkbox {
+    display: flex;
+    align-items: center;
+  }
+  .purchase-info > .checkbox input {
+    border-radius: 0px;
+    width: 16px;
+    aspect-ratio: 1/1;
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+  }
+  .purchase-info > .checkbox input::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 0;
+    border: 1px solid #444949;
+    display: block;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+  .purchase-info > .checkbox input::after {
+    content: "";
+    width: 4px;
+    height: 10px;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    display: block;
+    position: absolute;
+    border-bottom-right-radius: 1px;
+    top: 1.5px;
+    transform: rotate(45deg);
+    left: 6px;
+  }
+  .purchase-info > .checkbox input:checked::before {
+    border-color: #3a5eac;
+    background: #3a5eac;
+  }
+  .purchase-info > .checkbox span {
+    font-size: 14px;
+    font-family: var(--maven);
+    user-select: none;
+  }
+  .purchase-details > h1 {
+    display: flex;
+    align-items: center;
+    font-family: var(--arial);
+    font-weight: 700;
+    padding-right: 10px;
+    font-size: 24px;
+    margin-left: auto;
+    width: 230px;
+  }
+  /* -- */
+  .purchase-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 425px;
+    margin: 80px auto 50px;
+    position: relative;
+  }
+  .purchase-type:first-child > h1.option::before {
+    content: "";
+    width: 110%;
+    left: 50%;
+    top: 60px;
+    position: absolute;
+    height: 30px;
+    border: 1px solid black;
+    border-top: none;
+  }
+  .purchase-buttons::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    background: black;
+    height: 50px;
+    top: -50px;
+    left: 50%;
+  }
+  .purchase-buttons button.btn-primary.read-btn {
+    background: transparent;
+    box-shadow: none;
+    color: black;
+    font-weight: 600;
+    border: 1px solid black;
+  }
+  /* --- */
+  .business-ad-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .business-ad-container > h1 {
+    font-family: var(--arial);
+    font-size: 40px;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 30px 30px;
+  }
+  .business-ad-img {
+    width: 100%;
+    position: relative;
+  }
+  .business-ad-img img {
+    width: 100%;
+  }
+  .business-ad-img > h1 {
+    position: absolute;
+    top: 10rem;
+    left: 10rem;
+    font-size: 5rem;
+    color: white;
+    font-weight: 900;
+    max-width: 42rem;
+  }
+  .business-ad-text {
+    padding: 0 140px;
+    margin: 40px 0 120px;
+  }
+  .business-ad-text h2 {
+    font-size: 30px;
+    font-family: var(--arial);
+    text-align: center;
+  }
+  .business-ad-text p {
+    font-size: 24px;
+    font-family: var(--arial);
+    text-align: center;
+    margin-top: 20px;
+  }
+  /* -- */
+  .shoe-ad-img {
+    width: 100%;
+  }
+  /* --- */
+
+  .impact-section > h1 {
+    background: #957ab5;
+    color: white;
+    font-family: var(--arial);
+    font-size: 40px;
+    text-align: center;
+    padding: 30px 10px;
+    margin-top: -5px;
+  }
+  /* --- */
+  /* Salman */
+
+  /* -=-- */
+
+  .clients-container {
+    width: 80%;
+    margin: 100px 0;
+    position: relative;
+    margin: 0 auto 100px;
+  }
+  .clients-container > h1 {
+    text-align: center;
+    font-size: 40px;
+    padding: 20px 10px 60px;
+    font-family: var(--arial);
+  }
+  .swiper-wrapper {
+    width: 100%;
+  }
+  .clients-swiper {
+    overflow: hidden;
+  }
+  .swiper-wrapper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .swiper-wrapper .swiper-slide img {
+    width: 130px;
+  }
+  .swiper-wrapper .swiper-slide img.sm-img {
+    width: 200px;
+  }
+  .clients-container .swiper-button-next::after,
+  .clients-container .swiper-button-prev::after {
+    display: none;
+  }
+  .clients-container .swiper-button-next,
+  .clients-container .swiper-button-prev {
+    top: 160px;
+    font-size: 26px;
+    border-radius: 50%;
+    color: #686868;
+    width: 50px;
+    height: 50px;
+    display: flex;
+  }
+
+  .clients-container .swiper-button-prev {
+    left: -70px;
+  }
+  .clients-container .swiper-button-next {
+    right: -70px;
+  }
+  /* ---- */
+  .purchasing-plan-section img {
+    width: 100%;
+  }
+  section:has(.purchasing-plan-container) {
+    background: #e5e5e5;
+  }
+  .purchasing-plan-container {
+    display: flex;
+    margin-top: -5px;
+    padding: 75px 0;
+  }
+  .purchasing-twice-container {
+    display: flex;
+    /* background: green; */
+    width: 50%;
+    justify-content: center;
+    padding: 40px 25px;
+    align-items: center;
+  }
+  .purchasing-twice-container > h1 {
+    margin: 0 30px;
+    font-family: var(--maven);
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .purchasing-twice-container:first-child {
+    border-right: 1px solid #636363;
+  }
+  .purchase-plan {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 200px;
+  }
+  .purchase-plan .card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 1px 1px 4px 0px #9b9b9b;
+  }
+  .purchase-plan .card > .header {
+    background: #d5d4d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px 0 10px;
+    color: black;
+    font-family: var(--arial);
+  }
+  .purchase-plan.bright .card > .header {
+    background: var(--green);
+    color: white;
+  }
+  .purchase-plan .card > .header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: unset;
+  }
+  .purchase-plan .card > .header p {
+    font-size: 13px;
+  }
+  .purchase-plan .card > .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 5px 30px;
+    font-family: var(--arial);
+  }
+  .purchase-plan .card > .body h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 15px 0;
+  }
+  .purchase-plan .card > .body p {
+    font-size: 12px;
+    margin: 2px 0 00 0;
+    font-weight: 600;
+    line-height: unset;
+  }
+  .purchase-plan > .btn {
+    width: 100% !important;
+    background: #d5d4d3;
+    text-align: center;
+    font-family: var(--arial);
+    padding: 8px 0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: black !important;
+  }
+  .purchase-plan.bright > .btn {
+    background: var(--green);
+    color: white !important;
+  }
+  /* --- */
+  .plan-guide-section > .title {
+    background: var(--blue);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 30px 20px;
+    color: white;
+    font-family: var(--arial);
+  }
+  .plan-guide-section > .title h1 {
+    font-size: 40px;
+    font-weight: 900;
+  }
+  .plan-guide-section > .title p {
+    font-size: 28px;
+    font-weight: 600;
+    width: 800px;
+    margin: 0 auto;
+  }
+  .plan-guide-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 60px 0 70px;
+    gap: 50px;
+  }
+  .plan-guide-steps {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 50px;
+    gap: 50px;
+    justify-content: space-between;
+  }
+  .plan-guide-step {
+    width: 26%;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 1px #b9b9b9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    padding: 0 30px;
+    font-size: 28px;
+    font-family: var(--arial);
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+  }
+  .plan-guide-container > button {
+    margin: 0 auto;
+  }
+  .plan-guide-step::after {
+    content: "+";
+    position: absolute;
+    font-size: 125px;
+    font-family: var(--arial);
+    right: -37%;
+  }
+  .plan-guide-step:nth-child(3)::after,
+  .plan-guide-step:nth-child(6)::after {
+    display: none;
+  }
+  .impact-last-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 50px 0;
+    gap: 50px;
+  }
+  .impact-last-section h1 {
+    text-align: center;
+    font-family: var(--arial);
+    font-size: 36px;
+    font-weight: 800;
+  }
+  .impact-last-section img {
+    width: 100%;
+  }
+  .impact-last-section > button {
+    margin: 0 auto;
+  }
+  /* ######### */
+
+  .impact-section > h1 {
+    background: #957ab5;
+    color: white;
+    font-family: var(--arial);
+    font-size: 40px;
+    text-align: center;
+    padding: 30px 10px;
+    margin-top: -5px;
+  }
+  /* --- */
+  .impact-container {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 30px 40px 50px;
+    padding: 30px 20px;
+  }
+  .impact-container > video {
+    position: absolute;
+    /* filter: brightness(1.3); */
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .impact-container > form,
+  .filtered-results {
+    z-index: 4;
+    position: relative;
+    padding: 0 50px;
+  }
+  .impact-container > form {
+    border-right: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .impact-container > form > * {
+    width: 220px;
+  }
+  .impact-container > form input {
+    padding: 30px 5px;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-weight: 500;
+    font-family: var(--maven);
+    font-size: 22px;
+  }
+  .impact-container > form input::-webkit-inner-spin-button,
+  .impact-container > form input::-webkit-outer-spin-button {
+    display: none;
+  }
+  .impact-container > form label {
+    font-size: 18px;
+    color: white;
+    font-family: var(--arial);
+  }
+  .impact-container > form button {
+    padding: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background: #00bef1;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+  }
+  .filtered-results {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .filtered-results > .filtered-result {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    font-family: var(--arial);
+    font-family: var(--maven);
+    color: white;
+  }
+  .filtered-result > h1 {
+    font-size: 70px;
+    font-weight: 900;
+    color: white;
+  }
+  .filtered-result > p {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+  }
+  /* ######### */
+</style>
+
+<!-- Media Queries -->
+<style>
+  @media screen and (max-width: 1700px) {
+    .business-ad-img > h1 {
+      top: 7rem;
+      left: 6rem;
+      font-size: 4rem;
+      max-width: 34rem;
+    }
+  }
+  @media screen and (max-width: 1280px) {
+    .container {
+      width: 100%;
+    }
+    .business-ad-img > h1 {
+      top: 100px;
+      left: 100px;
+      font-size: 50px;
+      max-width: 420px;
+    }
+    .business-ad-container > h1 {
+      font-size: 36px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .filtered-result > h1 {
+      font-size: 60px;
+    }
+    .filtered-result > p {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1150px) {
+    .purchase-details > h1 {
+      width: auto;
+    }
+  }
+  @media screen and (max-width: 1100px) {
+    .plan-step > h3 {
+      font-size: 16px;
+    }
+    .plan-step:not(:last-child)::before {
+      font-size: 90px;
+      top: -17px;
+      right: -70px;
+    }
+    .business-ad-container > h1 {
+      font-size: 30px;
+    }
+    .purchasing-twice-container > h1 {
+      margin: 0 20px;
+    }
+    .filtered-result > h1 {
+      font-size: 50px;
+    }
+    .filtered-results {
+      padding: 0 30px;
+    }
+    .impact-container > video {
+      width: unset;
+      height: 100%;
+    }
+  }
+  @media screen and (max-width: 1050px) {
+    .purchase-container {
+      padding: 0 50px;
+    }
+    .purchase-container > .purchase-types {
+      gap: 50px;
+    }
+    .purchase-product > .product-info {
+      padding: 20px;
+    }
+    .plan-steps-container > h1,
+    .benefit-qa h1 {
+      font-size: 50px;
+    }
+    .plan-guide-step::after {
+      right: -40%;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .headline-container > h1 {
+      font-size: 34px;
+    }
+    .headline-container > h2 {
+      font-size: 22px;
+    }
+    .hero-video .play-pause-btn {
+      width: 120px;
+      font-size: 50px;
+    }
+    .purchase-container > .purchase-types {
+      gap: 30px;
+    }
+    .plan-img-text {
+      grid-template-areas: "img text1" "img text2" "text3 text3" "text4 text4";
+    }
+    .plan-img-text > p:nth-child(4) {
+      padding: 30px 0 0 0;
+    }
+    .plan-steps {
+      gap: 80px;
+    }
+    .plan-step:not(:last-child)::before {
+      right: -70px;
+    }
+    .plan-step > p {
+      font-size: 14px;
+    }
+    .plan-step > h3 {
+      padding: 0 10px;
+    }
+    .purchase-details .purchase-info {
+      transform: scale(0.9);
+      margin-left: -15px;
+      min-width: 190px;
+    }
+    .purchase-details > h1 {
+      font-size: 20px;
+      padding: 0;
+    }
+    .purchase-type:first-child > h1.option::before {
+      width: 113%;
+    }
+    .business-ad-img > h1 {
+      top: 60px;
+      left: 50px;
+      font-size: 45px;
+      max-width: 380px;
+    }
+    .business-ad-text {
+      padding: 0 100px;
+      margin: 40px 0 100px;
+    }
+    .plan-guide-steps {
+      gap: 40px;
+    }
+    .plan-guide-step {
+      width: 28%;
+      padding: 0 20px;
+      font-size: 26px;
+    }
+    .plan-guide-step::after {
+      font-size: 100px;
+      right: -29%;
+    }
+    .purchasing-plan-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 0;
+    }
+    .purchasing-twice-container {
+      width: 500px;
+    }
+    .purchasing-twice-container:first-child {
+      border-right: none;
+      border-bottom: 1px solid grey;
+    }
+    .filtered-results {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .impact-container > form {
+      justify-content: center;
+      padding-right: 70px;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .purchase-container {
+      padding: 0 60px;
+    }
+
+    .purchase-container > .purchase-types {
+      gap: 50px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .purchase-product {
+      width: 46%;
+    }
+    .plan-steps {
+      flex-direction: column;
+    }
+    .plan-step > p {
+      margin: 0 0 0 100px;
+    }
+    .plan-steps > .plan-step {
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+    .plan-step > h3 {
+      padding: 0;
+      width: 200px;
+      max-width: 200px;
+      min-width: 200px;
+    }
+    .plan-step > h3::before {
+      height: 1px;
+      right: -80px;
+      width: 80px;
+      bottom: unset;
+    }
+    .plan-step:not(:last-child)::before {
+      right: unset;
+      left: 70px;
+      top: 100px;
+    }
+    .benefit-qa h1 {
+      font-size: 40px;
+      padding: 30px 10px;
+    }
+    .purchase-details {
+      flex-direction: column-reverse;
+    }
+    .purchase-details .purchase-info {
+      margin: 0px 0 -15px -33px;
+      transform: scale(0.8);
+    }
+    .purchase-type:first-child > h1.option::before {
+      width: 116%;
+    }
+    .business-ad-container > h1 {
+      font-size: 26px;
+    }
+    .business-ad-img > h1 {
+      top: 50px;
+      left: 50px;
+      font-size: 40px;
+      max-width: 335px;
+    }
+
+    .plan-guide-section > .title h1 {
+      font-size: 34px;
+    }
+    .plan-guide-section > .title p {
+      width: 90%;
+      font-size: 24px;
+    }
+    .plan-guide-steps {
+      width: 595px;
+      margin: 0 auto;
+    }
+    .plan-guide-step {
+      width: 200px;
+    }
+    .plan-guide-step:nth-child(2)::after,
+    .plan-guide-step:nth-child(4)::after {
+      display: none;
+    }
+    .plan-guide-step:nth-child(3)::after {
+      display: block;
+    }
+    .plan-guide-step::after {
+      right: -85px;
+    }
+    .purchasing-plan-container {
+      padding: 40px 0;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .headline-container > h1,
+    .headline-container > h2 {
+      min-height: 60px;
+    }
+    /* --- */
+    .headline-container > h1 {
+      font-size: 30px;
+    }
+    .headline-container > h2 {
+      font-size: 20px;
+    }
+    .hero-video-container h1 {
+      font-size: 28px;
+    }
+    .btn-primary {
+      font-size: 24px;
+    }
+    .hero-video-container {
+      gap: 40px;
+    }
+    .hero-video .play-pause-btn {
+      width: 100px;
+      font-size: 40px;
+    }
+    .purchase-product {
+      width: 45%;
+    }
+    .purchase-container > h2 {
+      width: 100%;
+    }
+    .plan-img-text > p {
+      font-size: 20px;
+    }
+    .plan-img-text {
+      grid-template-columns: 300px auto;
+      grid-template-areas: "img text1" "img text2" "text3 text3" "text4 text4";
+    }
+    .plan-img-text > p:nth-child(3) {
+      padding: 30px 0 0 30px;
+    }
+    .plan-img-text > p:nth-child(2) {
+      padding: 0px 0 0 30px;
+    }
+    .plan-steps-container > h1,
+    .benefit-qa h1 {
+      font-size: 40px;
+    }
+    .purchase2-container > .purchase-types {
+      gap: 40px;
+    }
+    .purchase-details .purchase-info {
+      margin: -5px 0 -18px -26px;
+    }
+    .purchase-details > h1 {
+      font-size: 18px;
+    }
+    .purchase-image > span {
+      font-size: 14px;
+    }
+    .purchasing-plan-container {
+      padding: 30px 0;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .purchase-container > .purchase-types {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .purchase-product {
+      width: 75%;
+    }
+    .purchase-container > h1,
+    .purchase-container > h2 {
+      padding: 0;
+    }
+    .purchase-container > h1 {
+      font-size: 26px;
+    }
+
+    .purchase-container > h2 {
+      font-size: 22px;
+    }
+    .purchase-section {
+      margin-top: 75px;
+    }
+    .plan-img-text {
+      grid-template-columns: 300px auto;
+      grid-template-areas: "img text1" "text2 text2" "text3 text3" "text4 text4";
+    }
+    .plan-img-text > p:nth-child(2) {
+      padding: 50px 0 0 30px;
+    }
+    .plan-img-text > p:nth-child(3) {
+      padding: 30px 0 0 0px;
+    }
+    .benefit-qa h1 {
+      font-size: 35px;
+      padding: 20px 10px;
+    }
+    .purchase-image > span {
+      top: 20px;
+      left: 20px;
+    }
+    .purchase2-container > h1 {
+      font-size: 26px;
+      padding: 0;
+    }
+    .purchase2-container {
+      margin: 40px 0 30px;
+    }
+    .business-ad-img > h1 {
+      top: 30px;
+      left: 40px;
+      font-size: 32px;
+      max-width: 270px;
+    }
+    .business-ad-text {
+      padding: 0 70px;
+    }
+    .business-ad-text h2 {
+      font-size: 24px;
+    }
+    .business-ad-text p {
+      font-size: 22px;
+    }
+    .business-ad-container > h1 {
+      font-size: 23px;
+    }
+    .impact-section > h1 {
+      padding: 20px 10px;
+      font-size: 34px;
+    }
+    .swiper-wrapper .swiper-slide img {
+      width: 80px;
+    }
+    .swiper-wrapper .swiper-slide img.sm-img {
+      width: 150px;
+    }
+    .clients-container .swiper-button-prev {
+      left: -50px;
+      top: 150px;
+    }
+    .clients-container .swiper-button-next {
+      top: 150px;
+      right: -50px;
+    }
+
+    .clients-container {
+      margin: 0 auto 60px;
+    }
+    .plan-guide-section > .title h1 {
+      font-size: 28px;
+    }
+    .plan-guide-section > .title p {
+      font-size: 20px;
+    }
+    .impact-last-section {
+      margin: 30px 0;
+      gap: 30px;
+    }
+    .impact-last-section h1 {
+      font-size: 30px;
+    }
+    .purchasing-plan-container {
+      padding: 20px 0;
+    }
+
+    .impact-container {
+      padding: 30px 0px;
+    }
+    .impact-container > form,
+    .filtered-results {
+      padding: 0 30px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .hero-video-container h1 {
+      padding: 0 30px;
+      text-align: center;
+    }
+    .btn-primary {
+      padding: 10px 60px;
+    }
+    .hero-video .play-pause-btn {
+      width: 80px;
+      font-size: 30px;
+    }
+    .purchase-container {
+      padding: 0 20px;
+    }
+    .plan-img-text > .plan-img {
+      width: 70%;
+    }
+    .plan-img-text {
+      grid-template-columns: auto;
+      grid-template-areas: "text1 text1" " img img" "text2 text2" "text3 text3" "text4 text4";
+    }
+    .plan-img-text > p:nth-child(2) {
+      padding: 0 0 30px 0;
+    }
+    .plan-img-text > .plan-img {
+      width: 60%;
+    }
+    .plan-img-text > p {
+      font-size: 18px;
+    }
+    .plan-steps-container {
+      padding: 0 50px;
+    }
+    .plan-step > h3 {
+      padding: 0;
+      width: 180px;
+      max-width: 180px;
+      min-width: 180px;
+    }
+    .plan-step:not(:last-child)::before {
+      left: 55px;
+      top: 90px;
+    }
+    .plan-step > h3::before {
+      right: -60px;
+      width: 60px;
+    }
+    .plan-step > p {
+      margin: 0 0 0 70px;
+    }
+    .purchase2-container > .purchase-types {
+      flex-direction: column;
+      padding: 0 50px;
+
+      gap: 100px;
+    }
+    .purchase-type:first-child > h1.option::before {
+      display: none;
+    }
+    .purchase-buttons {
+      margin: 40px auto 50px;
+      width: 100%;
+    }
+    .purchase-buttons::before {
+      display: none;
+    }
+    .business-ad-img > h1 {
+      font-size: 30px;
+    }
+    .filtered-result > h3 {
+      font-size: 20px;
+    }
+    .filtered-result > p {
+      padding: 0 5px;
+    }
+    .filtered-results > .filtered-result {
+      min-height: unset;
+    }
+    .plan-guide-steps {
+      flex-direction: column;
+      gap: 100px;
+      width: 100%;
+    }
+    .plan-guide-step {
+      width: 100%;
+      padding: 20px 50px;
+      height: unset;
+    }
+    .plan-guide-step:nth-child(1)::after {
+      display: none;
+    }
+    .plan-guide-step:nth-child(2)::after,
+    .plan-guide-step:nth-child(4)::after,
+    .plan-guide-step:nth-child(6)::after {
+      display: block;
+    }
+    .plan-guide-step::after {
+      right: unset;
+      top: -130px;
+    }
+    .impact-container > form > * {
+      width: 150px;
+    }
+    .impact-container > form label {
+      font-size: 14px;
+    }
+    .filtered-result > h1 {
+      font-size: 40px;
+    }
+  }
+  @media screen and (max-width: 550px) {
+    .purchasing-twice-container {
+      width: max-content;
+      flex-direction: column;
+    }
+    .purchasing-twice-container > h1 {
+      margin: 20px;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .headline-container > h1,
+    .headline-container > h2 {
+      min-height: 50px;
+    }
+    /* --- */
+    .headline-container > h1 {
+      font-size: 26px;
+      padding: 20px 30px;
+    }
+    .headline-container > h2 {
+      font-size: 18px;
+      line-height: 20px;
+      padding: 20px 30px;
+    }
+    .plan-img-text > .plan-img {
+      width: 80%;
+    }
+    .plan-steps-container > h1,
+    .benefit-qa h1 {
+      font-size: 30px;
+    }
+    .plan-step > h3 {
+      width: 150px;
+      max-width: 150px;
+      min-width: 150px;
+      font-size: 13px;
+      padding: 0 2px;
+    }
+    .plan-steps {
+      gap: 60px;
+    }
+    .plan-step:not(:last-child)::before {
+      left: 50px;
+      font-size: 70px;
+      top: 72px;
+    }
+    .plan-step > p {
+      font-size: 12px;
+    }
+    .purchase2-container > .purchase-types {
+      padding: 0;
+    }
+    .purchase2-container > h1 {
+      font-size: 24px;
+    }
+    .business-ad-img > h1 {
+      font-size: 22px;
+      width: 185px;
+    }
+    .business-ad-text {
+      padding: 0 50px;
+    }
+
+    .impact-section > h1 {
+      font-size: 30px;
+    }
+    .clients-container > h1 {
+      font-size: 30px;
+      padding: 10px 10px 50px;
+    }
+    .clients-container .swiper-button-next,
+    .clients-container .swiper-button-prev {
+      top: 115px;
+    }
+    .impact-container {
+      flex-direction: column;
+      padding: 40px 30px;
+    }
+    .impact-container > form > * {
+      width: 80%;
+    }
+    .impact-container > form {
+      border: none;
+      border-bottom: 2px solid white;
+      padding: 0 0 30px 0;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .filtered-results {
+      align-items: center;
+    }
+    .filtered-result {
+      width: 80%;
+    }
+  }
+  @media screen and (max-width: 460px) {
+    .plan-steps > .plan-step {
+      flex-direction: column;
+    }
+    .plan-step > h3::before {
+      height: 50px;
+      width: 1px;
+      left: unset;
+      top: unset;
+      right: unset;
+      bottom: -50px;
+    }
+    .plan-step > p {
+      margin: 60px 0 0 0;
+    }
+    .plan-step:not(:last-child)::before {
+      content: "";
+    }
+    .plan-step:not(:first-child)::before {
+      font-size: 70px;
+      top: -85px;
+      content: "+";
+      position: absolute;
+      font-weight: 900;
+      font-family: var(--arial);
+      width: 100%;
+      left: 0;
+      text-align: center;
+    }
+    .purchase2-container {
+      padding: 0 40px;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .headline-container > h1,
+    .headline-container > h2 {
+      min-height: 40px;
+    }
+    /* --- */
+    .headline-container > h1 {
+      font-size: 22px;
+    }
+    .purchase-container > h1 {
+      font-size: 22px;
+    }
+    .headline-container > h2 {
+      font-size: 16px;
+      line-height: 18px;
+    }
+    .btn-primary {
+      padding: 10px 40px;
+      font-size: 22px;
+    }
+    .hero-video .play-pause-btn {
+      width: 60px;
+      font-size: 20px;
+    }
+    .purchase-product {
+      width: 90%;
+    }
+    .purchase-container > h2 {
+      font-size: 20px;
+    }
+    .purchase-section {
+      margin: 75px 0;
+    }
+    .plan-img-text > .plan-img {
+      width: 100%;
+    }
+    .plan-img-text {
+      padding: 40px;
+    }
+    .plan-steps-container > h1,
+    .benefit-qa h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+    .benefit-qa h1 {
+      padding: 15px 10px;
+    }
+    .purchase-buttons button.btn-primary.read-btn {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .purchase2-container {
+      gap: 30px;
+    }
+    .purchase-buttons {
+      margin: 50px auto 50px;
+      gap: 20px;
+    }
+    .purchase2-container {
+      padding: 0 30px;
+    }
+    .business-ad-container > h1 {
+      font-size: 20px;
+    }
+    .business-ad-text {
+      padding: 0 20px;
+      margin: 40px 0 80px;
+    }
+    .business-ad-text h2 {
+      font-size: 22px;
+    }
+    .business-ad-text p {
+      font-size: 18px;
+    }
+    .impact-section > h1 {
+      font-size: 25px;
+    }
+    .clients-container .swiper-button-prev {
+      left: -40px;
+    }
+    .clients-container .swiper-button-next {
+      right: -40px;
+    }
+
+    .plan-guide-section > .title h1 {
+      font-size: 26px;
+    }
+    .plan-guide-section > .title p {
+      font-size: 18px;
+    }
+    .plan-guide-step {
+      font-size: 22px;
+    }
+    .impact-container > form > * {
+      width: 90%;
+    }
+    .filtered-results {
+      padding: 0;
+    }
+  }
+</style>
+
+<section class="outliner-section">
+  <div class="headline-container">
+    <h1>
+      <!-- Don't remove this element  -->
+    </h1>
+    <h2>
+      <!-- Don't remove this element  -->
+    </h2>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Text Outliners Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Hero Video Section Starts Here -->
+<!-- ########################## -->
+
+<section class="hero-video-section">
+  <div class="hero-video-container">
+    <!-- Video  -->
+    <div class="hero-video">
+      <video
+        id="hero_videooo"
+        src="<?php echo get_template_directory_uri();?>/assets/media/videos/hero-section-video.mp4"
+        autoplay="autoplay"
+        loop="loop"
+        muted=""></video>
+    </div>
+    <!-- Title -->
+    <div class="container">
+      <h1>
+        <i class="fa-solid fa-quote-left"></i>
+        <span>Nature Credits Fund Nature Projects</span>
+        <i class="fa-solid fa-quote-right"></i>
+      </h1>
+      <a href="#sme-scrol" style="color: white" class="btn-primary"
+        >Choose Your Plan</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Hero Video Section Starts Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Purchase Section Starts Here -->
+<!-- ########################## -->
+
+<section class="purchase-section">
+  <div class="container">
+    <div class="purchase-container">
+      <h1>INVESTING IN PURPOSE BUILDS BRANDS AND COMMUNITIES</h1>
+      <!-- Products -->
+      <div class="purchase-types">
+        <!-- Product -->
+        <div class="purchase-product">
+          <div class="product-img">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/green-shoe.jpg"
+              alt="#" />
+            <span>FOR BUSINESS</span>
+          </div>
+          <div class="product-info">
+            <p>FOR SMALL TO MEDIUM BUSINESSES & CORPORATES</p>
+            <a href="#sme-scrol">
+              <button style="width: 100%">Purchase Plan</button></a
+            >
+          </div>
+        </div>
+        <!-- Product -->
+        <div class="purchase-product">
+          <div class="product-img">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/mobile.jpg"
+              alt="#" />
+            <span>FOR RETAILERS</span>
+          </div>
+          <div class="product-info">
+            <p>FOR RETAILERS WHO WANT IMPACT ATTACHED TO PURCHASE</p>
+            <a href="#ret-scrol">
+              <button style="width: 100%" class="btn-green"
+                >Purchase Plan</button
+              ></a
+            >
+          </div>
+        </div>
+        <!-- Product -->
+        <div class="purchase-product">
+          <div class="product-img">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/kid.jpg"
+              alt="#" />
+            <span>FOR INDIVIDUALS</span>
+          </div>
+          <div class="product-info">
+            <p>
+              FOR INDIVIDUALS & FAMILIES WHO WANT TO DO MORE FOR THE ENVIRONMENT
+            </p>
+            <a href="#ind-scrol">
+              <button style="width: 100%">Purchase Plan</button></a
+            >
+          </div>
+        </div>
+      </div>
+      <h2>
+        CHOOSE YOUR IMPACT PLAN, BUILD YOUR BRAND, AND SUPPORT THE NATURAL
+        ENVIRONMENT THAT SUSTAINS US
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Purchase Section Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Text Outliners Starts Here -->
+<!-- ########################## -->
+<section class="outliner-section">
+  <div class="headline-container">
+    <h1>
+      <!-- Don't remove this element  -->
+    </h1>
+    <h2>
+      <!-- Don't remove this element  -->
+    </h2>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Text Outliners Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Plan Section Starts Here -->
+<!-- ########################## -->
+
+<section class="plan-section">
+  <div class="container">
+    <div class="plan-container">
+      <!-- Plan Image and Text -->
+      <div class="plan-img-text">
+        <div class="plan-img">
+          <img
+            src="<?php echo get_template_directory_uri();?>/assets/media/images/plan-img.png"
+            alt="#" />
+        </div>
+        <p>
+          Nature Credits are a digital product designed to attract Investment to
+          financially support nature projects.
+        </p>
+        <p>
+          Think carbon credits, but for nature, with less drama and more
+          accessible to anyone who wants to support the natural environment, or
+          to help mitigate potential reputational or financial risk.
+        </p>
+        <p>
+          Nature Credits can be used to promote or build your brand by
+          attracting a more environmentally conscious consumer that demands
+          purpose attached to purchase.
+        </p>
+        <p>
+          The data used for Nature Credits is also used to support, monitor or
+          create new policy's and legislation to further ensure the success and
+          longevity of the nature project.
+        </p>
+      </div>
+      <!-- Plan Steps -->
+      <div class="plan-steps-container">
+        <!-- Title -->
+        <h1>HOW DOES IT WORK?</h1>
+        <div class="plan-steps">
+          <!-- Step -->
+          <div class="plan-step">
+            <h3>Measurable Nature Project</h3>
+            <p>
+              Project Operator: Seabin Location: Sydney Australia Biome: Ocean
+              Water Quality, Microplastics, Plastic Pollution, Marine Litter
+            </p>
+          </div>
+          <!-- Step -->
+          <div class="plan-step">
+            <h3>Science Based Methodology</h3>
+            <p>
+              Water filtered over time. Sub sampling of microplastics, plastic
+              pollution, and marine litter
+            </p>
+          </div>
+          <!-- Step -->
+          <div class="plan-step">
+            <h3>Fractionalised Pricing & Credit Scheme</h3>
+            <p>
+              Cost of project fractionalised into smaller amounts. Packaged,
+              managed and sold as credits and certificates
+            </p>
+          </div>
+          <!-- Step -->
+          <div class="plan-step">
+            <h3>Reporting, Communications, and Promotion</h3>
+            <p>
+              Report on your nature positive impact for ESG, sustainability or
+              shareholder purposes. Promote your impact for marketing purposes
+            </p>
+          </div>
+        </div>
+        <!-- Button -->
+        <a
+          href="https://seabin.docsend.com/view/s/cq7sqcf3pbki2wnv"
+          class="btn-primary"
+          style="color: white"
+          target="_blank"
+          >View Integrity Documents</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Plan Section Starts Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Text Outliners Starts Here -->
+<!-- ########################## -->
+<section class="outliner-section">
+  <div class="headline-container">
+    <h1>
+      <!-- Don't remove this element  -->
+    </h1>
+    <h2>
+      <!-- Don't remove this element  -->
+    </h2>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Text Outliners Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Benefits Section Starts Here -->
+<!-- ########################## -->
+
+<section class="benefit-section">
+  <div class="benefit-qa">
+    <h1 class="q">Q: WHAT THE BENEFITS?</h1>
+    <h1 class="a">A: PURPOSE BUIDS BRANDS!</h1>
+  </div>
+  <div class="container">
+    <div class="purchase2-container">
+      <!-- Purchase Title -->
+      <h1>Which product would you purchase?</h1>
+      <!-- Two Types of Purchase -->
+      <div class="purchase-types">
+        <!-- Purchase Type -->
+        <div class="purchase-type">
+          <!-- Image -->
+          <div class="purchase-image">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/glasses.png"
+              alt="#" />
+            <span>
+              Better Choices, <br />
+              Better for The Planet
+            </span>
+          </div>
+          <!-- Details -->
+          <div class="purchase-details">
+            <!-- info -->
+            <div class="purchase-info">
+              <h3>Steezy V <span>®</span></h3>
+              <span>SKU: 142.1 LME - REG</span>
+              <h2>$260</h2>
+              <p>With free monogrammed case</p>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" />
+                  <span>Include for free</span>
+                </label>
+              </div>
+            </div>
+            <h1>Proceeds from every sale supports cleaner oceans!</h1>
+          </div>
+          <!-- Optino No. [#] -->
+          <h1 class="option">Option A</h1>
+        </div>
+        <!-- Purchase Type -->
+        <div class="purchase-type">
+          <!-- Image -->
+          <div class="purchase-image">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/glasses.png"
+              alt="#" />
+            <span> </span>
+          </div>
+          <!-- Details -->
+          <div class="purchase-details">
+            <!-- info -->
+            <div class="purchase-info">
+              <h3>Steezy V<span>®</span></h3>
+              <span>SKU: 142.1 LME - REG</span>
+              <h2>$260</h2>
+              <p>With free monogrammed case</p>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" />
+                  <span>Include for free</span>
+                </label>
+              </div>
+            </div>
+            <h1><!-- Don't remove this element --></h1>
+          </div>
+          <!-- Optino No. [#] -->
+          <h1 class="option">Option B</h1>
+        </div>
+      </div>
+      <!-- Buttons -->
+      <div class="purchase-buttons">
+        <button class="read-btn btn-primary">Read the case studies</button>
+        <a
+          href="#sme-scrol"
+          style="max-width: max-content; margin: 0 auto; color: white"
+          class="choose-btn btn-primary"
+          >Choose Your Plan</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Benefits Section Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Business Ad Section Starts Here -->
+<!-- ########################## -->
+
+<section class="business-ad-section">
+  <div class="business-ad-container">
+    <h1>WE CAN CREATE AND PROMOTE YOUR IMPACT FOR YOU</h1>
+    <div class="business-ad-img">
+      <img
+        src="<?php echo get_template_directory_uri();?>/assets/media/images/cracery-img.png"
+        alt="#" />
+      <h1>
+        We are only a small family business, but we are supporting cleaner
+        oceans.
+      </h1>
+    </div>
+    <div class="container">
+      <div class="business-ad-text">
+        <h2>
+          Unsure how to promote your impact? Fill out an eligible criteria form,
+          send us a product sample and we can create some social media assets
+          for you.
+        </h2>
+        <p id="sme-scrol">
+          Please note we will not create or promote any product assets that does
+          not fit our elegible criteria. A minimum spend requirement is included
+          in elegible criteria.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Business Ad Section Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Text Outliners Starts Here -->
+<!-- ########################## -->
+
+<section class="outliner-section">
+  <div class="headline-container">
+    <h1>For SME's & Corporates</h1>
+    <h2> Purchase Nature Credits - Promote Your Impact - Build Your Brand </h2>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Text Outliners Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Shoes Ad Starts Here -->
+<!-- ########################## -->
+
+<section>
+  <img
+    src="<?php echo get_template_directory_uri();?>/assets/media/images/shoes-ad-img.png"
+    class="shoe-ad-img"
+    alt="#" />
+</section>
+
+<!-- ########################## -->
+<!-- Shoes Ad Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Impact Section Starts Here -->
+<!-- ########################## -->
+
+<section class="impact-section">
+  <h1>Choose Your Budget - Calculate Your Impact</h1>
+  <div class="container">
+    <div class="impact-container">
+      <!-- Bg Video -->
+      <!-- src="<?php echo get_template_directory_uri();?>/assets/media/videos/calculate-impact-video.mp4" -->
+      <video
+        src="media/videos/calculate-impact-video.mp4"
+        loop
+        muted
+        autoplay></video>
+      <!-- Impact Form -->
+      <form id="myForm" method="post">
+        <style>
+          .input_btns {
+            display: flex;
+            gap: 10px;
+          }
+          .impact-container form .input_btns input {
+            width: 100%;
+            padding: 8px 5px;
+          }
+          .impact-container form .input_btns button {
+            width: 80px;
+            padding: 5px;
+            font-size: 30px;
+            aspect-ratio: 1/1;
+            display: block;
+            transition: all 0.2s linear;
+          }
+          .impact-container form .input_btns button:disabled {
+            background: #98e3f8;
+            color: red;
+            border: 2px solid red;
+            opacity: 0.7;
+            cursor: not-allowed;
+          }
+        </style>
+        <label for="funds">Enter Your Budget Amount</label>
+        <div class="input_btns">
+          <button disabled="disabled">-</button>
+          <input
+            type="number"
+            oninput="creditChange(this.value)"
+            id="funds"
+            value="1000" />
+          <button>+</button>
+        </div>
+        <button onclick="return validateCredit()" type="submit">
+          Get a quote
+        </button>
+      </form>
+      <!-- Filtered Results -->
+      <div class="filtered-results">
+        <!-- Item -->
+        <div class="filtered-result">
+          <h1 id="filter-water">3.7M</h1>
+          <p>Litres of Water Filtered</p>
+        </div>
+        <!-- Item -->
+        <div class="filtered-result">
+          <h1 id="platic-captured">20K</h1>
+          <p>Plastic Items Captured</p>
+        </div>
+        <!-- Item -->
+        <div class="filtered-result">
+          <h1 id="micro-plastic">10.8K</h1>
+          <p>Microplastics Captured</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  function validateCredit() {
+    var funds = document.getElementById("funds").value;
+    if (funds <= 0) {
+      document.getElementById("funds").style.borderColor = "red";
+      return false;
+    } else {
+      var form = document.getElementById("myForm");
+      form.action = "https://seabin.io/get-quote/?total=" + funds;
+    }
+  }
+  function creditChange(funds) {
+    var credit = funds / 1000;
+    //var funds = credit * 1000;
+    var plastic = credit * 2000;
+    if (Math.abs(plastic) >= 1e9) {
+      plastic = (plastic / 1e9).toFixed(1) + "B";
+    }
+    // Check if the plasticber is greater than or equal to a million
+    else if (Math.abs(plastic) >= 1e6) {
+      plastic = (plastic / 1e6).toFixed(1) + "M";
+    }
+    // Check if the plasticber is greater than or equal to a thousand
+    else if (Math.abs(plastic) >= 1e3) {
+      plastic = (plastic / 1e3).toFixed(1) + "K";
+    }
+    // For plasticbers less than a thousand, simply round them off
+    else {
+      plastic = plastic.toFixed(0);
+    }
+
+    var filter = credit * 3737373.74;
+    //conversion
+    // Check if the number is greater than or equal to a billion
+    if (Math.abs(filter) >= 1e9) {
+      filter = (filter / 1e9).toFixed(1) + "B";
+    }
+    // Check if the filterber is greater than or equal to a million
+    else if (Math.abs(filter) >= 1e6) {
+      filter = (filter / 1e6).toFixed(1) + "M";
+    }
+    // Check if the filterber is greater than or equal to a thousand
+    else if (Math.abs(filter) >= 1e3) {
+      filter = (filter / 1e3).toFixed(1) + "K";
+    }
+    // For filterbers less than a thousand, simply round them off
+    else {
+      filter = filter.toFixed(0);
+    }
+    var microplastics = credit * 1080;
+    if (Math.abs(microplastics) >= 1e9) {
+      microplastics = (microplastics / 1e9).toFixed(1) + "B";
+    }
+    // Check if the microplasticsber is greater than or equal to a million
+    else if (Math.abs(microplastics) >= 1e6) {
+      microplastics = (microplastics / 1e6).toFixed(1) + "M";
+    }
+    // Check if the microplasticsber is greater than or equal to a thousand
+    else if (Math.abs(microplastics) >= 1e3) {
+      microplastics = (microplastics / 1e3).toFixed(1) + "K";
+    }
+    // For microplasticsbers less than a thousand, simply round them off
+    else {
+      microplastics = microplastics.toFixed(0);
+    }
+    document.getElementById("funds").value = funds;
+    //update platic captured
+    document.getElementById("platic-captured").innerHTML = plastic;
+    //water filter
+    document.getElementById("filter-water").innerHTML = filter;
+    //micro plastic
+    document.getElementById("micro-plastic").innerHTML = microplastics;
+  }
+</script>
+<!-- ########################## -->
+<!-- Impact Section Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Our Clients Section Starts Here -->
+<!-- ########################## -->
+
+<section class="clients-section">
+  <div class="container">
+    <div class="clients-container">
+      <h1>Our Clients</h1>
+      <div class="clients-swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo.png"
+              alt="#" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo-2.png"
+              alt="#" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo-3.png"
+              alt="#"
+              class="sm-img" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo.png"
+              alt="#" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo-2.png"
+              alt="#" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo-3.png"
+              alt="#"
+              class="sm-img" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo.png"
+              alt="#" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo-2.png"
+              alt="#" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="<?php echo get_template_directory_uri();?>/assets/media/images/client-logo-3.png"
+              alt="#"
+              class="sm-img" />
+          </div>
+        </div>
+      </div>
+      <!-- navigation buttons -->
+      <div class="swiper-button-prev">
+        <i class="fa-solid fa-angle-left"></i>
+      </div>
+      <div class="swiper-button-next">
+        <i class="fa-solid fa-angle-right"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Our Clients Section Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Text Outliners Starts Here -->
+<!-- ########################## -->
+
+<section class="outliner-section" id="ret-scrol">
+  <div class="headline-container">
+    <h1>For Retailers</h1>
+    <h2> Choose Your Subscription - Promote Your Impact - Build Your Brand </h2>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Text Outliners Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Purchasign Section Starts Here -->
+<!-- ########################## -->
+
+<section class="purchasing-plan-section">
+  <img
+    src="<?php echo get_template_directory_uri();?>/assets/media/images/mobile-img.png"
+    alt="#" />
+  <div class="container">
+    <div class="purchasing-plan-container">
+      <!-- Twice Plan Cards -->
+      <div class="purchasing-twice-container">
+        <!-- Plan Item -->
+        <div class="purchase-plan">
+          <div class="card">
+            <div class="header">
+              <h2>$250 Per Month</h2>
+              <p>($3000 Per Year)</p>
+            </div>
+            <div class="body">
+              <h3>Your Impact</h3>
+              <p>11.2 Million Litres Water Filtered</p>
+              <p>6,000 Plastic Items Captured</p>
+              <p>3,240 Microplastics Captured</p>
+            </div>
+          </div>
+          <a
+            href="https://buy.stripe.com/dR65kkgzLe5T9va8wz"
+            target="_blank"
+            class="btn"
+            >Purchase Plan</a
+          >
+        </div>
+        <h1>OR</h1>
+        <!-- Plan Item -->
+        <div class="purchase-plan bright">
+          <div class="card">
+            <div class="header">
+              <h2>$2,750 Per Year</h2>
+              <p>($250 Discount)</p>
+            </div>
+            <div class="body">
+              <h3>Your Impact</h3>
+              <p>11.2 Million Litres Water Filtered</p>
+              <p>6,000 Plastic Items Captured</p>
+              <p>3,240 Microplastics Captured</p>
+            </div>
+          </div>
+          <a
+            href="https://buy.stripe.com/3csbII6Zb9PD8r628a"
+            target="_blank"
+            class="btn"
+            >Purchase Plan</a
+          >
+        </div>
+      </div>
+      <!-- Twice Plan Cards -->
+      <div class="purchasing-twice-container">
+        <!-- Plan Item -->
+        <div class="purchase-plan">
+          <div class="card">
+            <div class="header">
+              <h2>$500 Per Month</h2>
+              <p>($6000 Per Year)</p>
+            </div>
+            <div class="body">
+              <h3>Your Impact</h3>
+              <p>22.4 Million Litres Water Filtered</p>
+              <p>12,000 Plastic Items Captured</p>
+              <p>6,840 Microplastics Captured</p>
+            </div>
+          </div>
+          <a
+            href="https://buy.stripe.com/dR6fYYbfr3rfePueUV"
+            target="_blank"
+            class="btn"
+            >Purchase Plan</a
+          >
+        </div>
+        <h1>OR</h1>
+        <!-- Plan Item -->
+        <div class="purchase-plan bright">
+          <div class="card">
+            <div class="header">
+              <h2>$5,500 Per Month</h2>
+              <p>($500 Discount)</p>
+            </div>
+            <div class="body">
+              <h3>Your Impact</h3>
+              <p>22.4 Million Litres Water Filtered</p>
+              <p>12,000 Plastic Items Captured</p>
+              <p>6,840 Microplastics Captured</p>
+            </div>
+          </div>
+          <a
+            href="https://buy.stripe.com/fZe0005V7ge17n28ww"
+            target="_blank"
+            class="btn"
+            >Purchase Plan</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Purchasign Section Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Text Outliners Starts Here -->
+<!-- ########################## -->
+
+<section class="outliner-section" id="ind-scrol">
+  <div class="headline-container">
+    <h1>For Families & Individuals</h1>
+    <h2>Choose Your Subscription - Support Cleaner Oceans</h2>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Text Outliners Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Purchasign Section Starts Here -->
+<!-- ########################## -->
+
+<section class="purchasing-plan-section">
+  <img
+    src="<?php echo get_template_directory_uri();?>/assets/media/images/student-img.png"
+    alt="#" />
+  <div class="container">
+    <div class="purchasing-plan-container">
+      <!-- Twice Plan Cards -->
+      <div class="purchasing-twice-container">
+        <!-- Plan Item -->
+        <div class="purchase-plan">
+          <div class="card">
+            <div class="header">
+              <h2>$25 Per Month</h2>
+              <p>($300 Per Year)</p>
+            </div>
+            <div class="body">
+              <h3>Your Impact</h3>
+              <p>1 Million Litres Water Filtered</p>
+              <p>540 Plastic Items Captured</p>
+              <p>291 Microplastics Captured</p>
+            </div>
+          </div>
+          <a
+            href="https://buy.stripe.com/6oE6oobfrge1bDi6ow"
+            target="_blank"
+            class="btn"
+            >Purchase Plan</a
+          >
+        </div>
+        <h1>OR</h1>
+        <!-- Plan Item -->
+        <div class="purchase-plan bright">
+          <div class="card">
+            <div class="header">
+              <h2>$270 Per Year</h2>
+              <p>($30 Discount)</p>
+            </div>
+            <div class="body">
+              <h3>Your Impact</h3>
+              <p>1 Million Litres Water Filtered</p>
+              <p>540 Plastic Items Captured</p>
+              <p>291 Microplastics Captured</p>
+            </div>
+          </div>
+          <a
+            href="https://buy.stripe.com/6oE3cc1ER1j77n228h"
+            target="_blank"
+            class="btn"
+            >Purchase Plan</a
+          >
+        </div>
+      </div>
+      <!-- Twice Plan Cards -->
+      <div class="purchasing-twice-container">
+        <!-- Plan Item -->
+        <div class="purchase-plan">
+          <div class="card">
+            <div class="header">
+              <h2>$50 Per Month</h2>
+              <p>($600 Per Year)</p>
+            </div>
+            <div class="body">
+              <h3>Your Impact</h3>
+              <p>2 Million Litres Water Filtered</p>
+              <p>1,100 Plastic Items Captured</p>
+              <p>594 Microplastics Captured</p>
+            </div>
+          </div>
+          <a
+            href="https://buy.stripe.com/dR6aEEdnz2nbePu00a"
+            target="_blank"
+            class="btn"
+            >Purchase Plan</a
+          >
+        </div>
+        <h1>OR</h1>
+        <!-- Plan Item -->
+        <div class="purchase-plan bright">
+          <div class="card">
+            <div class="header">
+              <h2>$540 Per Year</h2>
+              <p>($60 Discount)</p>
+            </div>
+            <div class="body">
+              <h3>Your Impact</h3>
+              <p>2 Million Litres Water Filtered</p>
+              <p>1,100 Plastic Items Captured</p>
+              <p>594 Microplastics Captured</p>
+            </div>
+          </div>
+          <a
+            href="https://buy.stripe.com/14k0004R35zncHm5kv"
+            target="_blank"
+            class="btn"
+            >Purchase Plan</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Purchasign Section Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Text Outliners Starts Here -->
+<!-- ########################## -->
+
+<section class="outliner-section">
+  <div class="headline-container">
+    <h1>
+      <!-- Don't remove this element  -->
+    </h1>
+    <h2>
+      <!-- Don't remove this element  -->
+    </h2>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Text Outliners Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Plan Guide Section Starts Here -->
+<!-- ########################## -->
+
+<section class="plan-guide-section">
+  <div class="title">
+    <h1>WHATS IN THE PLAN?</h1>
+    <p>
+      Each purchase of a subscription plan or a credit plan recieves access to
+      an online folder that contains a variety of materials used to understand,
+      promote and report on your impact.
+    </p>
+  </div>
+  <!-- container -->
+  <div class="container">
+    <div class="plan-guide-container">
+      <!-- Steps -->
+      <div class="plan-guide-steps">
+        <!-- Step -->
+        <div class="plan-guide-step">Integrity Documents</div>
+        <div class="plan-guide-step">Claims Guide</div>
+        <div class="plan-guide-step">
+          Guide: How To Promote Your Impact On Social Media
+        </div>
+        <div class="plan-guide-step">Digital Credit & Certificate</div>
+        <div class="plan-guide-step">Logo Assets</div>
+        <div class="plan-guide-step">Photo & Video Assets</div>
+      </div>
+      <a
+        href="#sme-scrol"
+        style="max-width: max-content; margin: 0 auto; color: white"
+        class="btn-primary"
+        >Choose Your Plan</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Plan Guide Section Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Text Outliners Starts Here -->
+<!-- ########################## -->
+
+<section class="outliner-section">
+  <div class="headline-container">
+    <h1>
+      <!-- Don't remove this element  -->
+    </h1>
+    <h2>
+      <!-- Don't remove this element  -->
+    </h2>
+  </div>
+</section>
+
+<!-- ########################## -->
+<!-- Text Outliners Ends Here -->
+<!-- ########################## -->
+
+<!-- ########################## -->
+<!-- Last Section Starts Here -->
+<!-- ########################## -->
+
+<section class="impact-last-section">
+  <h1>OUR IMPACT</h1>
+  <img
+    src="<?php echo get_template_directory_uri();?>/assets/media/images/map-img.png"
+    alt="#" />
+  <a
+    href="#sme-scrol"
+    style="max-width: max-content; margin: 0 auto; color: white"
+    class="btn-primary"
+    >Choose Your Plan</a
+  >
+</section>
+
+<!-- General Script -->
+
+<!-- Swiper Script -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  (function () {
+    const sSwiper = new Swiper(".clients-swiper", {
+      slidesPerView: 4,
+      loop: true,
+      spaceBetween: 25,
+      fade: true,
+
+      autoplay: {
+        disableOnInteraction: false,
+        delay: 1500,
+        pauseOnMouseEnter: true,
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 2,
+        },
+        800: {
+          slidesPerView: 3,
+        },
+        1200: {
+          slidesPerView: 4,
+        },
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  })();
+</script>
+
+<?php get_footer(); ?>
